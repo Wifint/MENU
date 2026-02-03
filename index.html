@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Documentación - TECNET.C.A.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #004494;
+            --accent-color: #eef4fb;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --bg-color: #f4f7f6;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            margin: 0.5rem 0 0;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.15);
+            border-color: rgba(0, 86, 179, 0.2);
+        }
+
+        .card-header {
+            height: 140px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: #999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .status-draft {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+
+        .add-card {
+            border: 2px dashed #ccc;
+            background: transparent;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            cursor: default;
+        }
+
+        .add-card:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: #bbb;
+        }
+
+        .add-content {
+            text-align: center;
+            color: #999;
+        }
+
+        .add-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            background-color: white;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div
+            style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h1>TECNET.C.A.</h1>
+                <p>Centro de Documentación Técnica</p>
+            </div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">v1.0</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="grid">
+            <!-- Manual Card 1 -->
+            <a href="manualfinal.html" class="card">
+                <div class="card-header">
+                    ⚡
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">Instalación Eléctrica</h2>
+                    <p class="card-desc">
+                        Protocolo técnico para la instalación de puntos eléctricos, medidas de seguridad y estándares de
+                        cableado.
+                    </p>
+                    <div class="card-meta">
+                        <span>Actualizado: Ene 2026</span>
+                        <span class="status-badge status-active">Publicado</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Placeholder for future manuals -->
+            <div class="card add-card">
+                <div class="card-body" style="align-items: center; justify-content: center;">
+                    <div class="add-content">
+                        <span class="add-icon">+</span>
+                        <h3>Próximamente</h3>
+                        <p>Espacio reservado para futuros manuales y protocolos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 TECNET.C.A. - Todos los derechos reservados.
+    </footer>
+
+</body>
+
+</html>
