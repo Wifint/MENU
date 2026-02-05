@@ -1,69 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocolo de Instalación: LiFePO4 y JK BMS</title>
+    <title>Instalación LiFePO4 y JK BMS - TECNET.C.A.</title>
     <style>
-        :root {
-            --primary: #27ae60;
-            --secondary: #2c3e50;
-            --accent: #2980b9;
-            --warning: #f39c12;
-            --danger: #c0392b;
-            --light-bg: #f4f7f6;
-        }
-
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             line-height: 1.6;
-            background-color: var(--light-bg);
             color: #333;
             margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
             padding: 20px;
         }
 
-        .main-container {
-            max-width: 950px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
         header {
+            border-bottom: 3px solid #0056b3;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .company-name {
+            font-size: 26px;
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        h1 {
+            color: #0056b3;
             text-align: center;
-            border-bottom: 4px solid var(--primary);
+            text-transform: uppercase;
+            font-size: 22px;
             margin-bottom: 30px;
-            padding-bottom: 20px;
         }
 
-        h1 { color: var(--secondary); text-transform: uppercase; margin: 0; letter-spacing: 1px; }
-        h2 { color: var(--primary); border-left: 6px solid var(--primary); padding-left: 15px; margin-top: 35px; background: #f9f9f9; padding-top: 10px; padding-bottom: 10px; }
-        h3 { color: var(--accent); margin-top: 25px; border-bottom: 1px solid #eee; }
-
-        .image-placeholder {
-            background-color: #f0f2f5;
-            border: 2px dashed #ccc;
-            border-radius: 10px;
-            margin: 25px 0;
-            padding: 15px;
-            text-align: center;
+        h2 {
+            background-color: #f4f4f4;
+            color: #0056b3;
+            padding: 10px;
+            border-left: 5px solid #0056b3;
+            font-size: 18px;
+            margin-top: 25px;
         }
 
-        .image-placeholder img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .caption {
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 10px;
-            font-style: italic;
+        h3 {
+            color: #444;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
         }
 
         .info-grid {
@@ -74,28 +66,51 @@
         }
 
         .data-card {
-            background: #fff;
+            background: #f9f9f9;
             padding: 20px;
-            border: 1px solid #e1e4e8;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #ddd;
+            border-radius: 8px;
         }
 
-        .alert {
-            background: #fff3cd;
-            border-left: 6px solid var(--warning);
-            padding: 20px;
+        .warning-alert {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
             margin: 20px 0;
             border-radius: 5px;
         }
 
         .danger {
-            background: #f8d7da;
-            border-left: 6px solid var(--danger);
-            padding: 20px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
             margin: 20px 0;
             border-radius: 5px;
-            color: #721c24;
+            font-weight: bold;
+        }
+
+        .image-placeholder {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .image-placeholder img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .caption {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 8px;
+            font-style: italic;
         }
 
         table {
@@ -104,60 +119,98 @@
             margin: 20px 0;
         }
 
-        th { background: var(--secondary); color: white; padding: 12px; text-align: left; }
-        td { padding: 12px; border-bottom: 1px solid #eee; }
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
 
-        .status-on { color: var(--primary); font-weight: bold; }
-        .status-off { color: #95a5a6; font-weight: bold; }
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
 
-        footer {
+        th {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        .status-on {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .status-off {
+            color: #95a5a6;
+            font-weight: bold;
+        }
+
+        .footer {
             margin-top: 50px;
             text-align: center;
-            font-size: 0.85em;
-            color: #95a5a6;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .page-break {
+            page-break-after: always;
         }
     </style>
 </head>
+
 <body>
 
-<div class="main-container">
-    <header>
-        <h1>INSTALACIÓN DE BATERÍA LiFePO4 Y BMS</h1>
-        <p>Protocolo Técnico de Configuración y Seguridad</p>
-    </header>
+    <div style="background: #eef4fb; padding: 10px 0; border-bottom: 1px solid #dde7f0;">
+        <div class="container" style="padding: 0 20px; display: flex; align-items: center;">
+            <a href="#"
+                style="text-decoration: none; color: #0056b3; font-weight: 600; display: flex; align-items: center; font-size: 14px;">
+                <span style="font-size: 18px; margin-right: 5px;">&#8592;</span> Volver al Panel Principal
+            </a>
+        </div>
+    </div>
 
-    <section>
-        <h2>1. Identificación y Preparación</h2>
-        <p>La batería debe ser entregada armada, por lo que <strong>no se debe interactuar internamente</strong> con la instalación de la misma. Para iniciar, solo debe presionar el botón para el encendido del BMS.</p>
-        
+    <div class="container">
+        <header>
+            <div class="company-name">TECNET.C.A.</div>
+            <div style="text-align: right; font-weight: bold;">PROTOCOLO TÉCNICO</div>
+        </header>
+
+        <h1>Instalación de Batería LiFePO4 y BMS</h1>
+
+        <h2>1. IDENTIFICACIÓN Y PREPARACIÓN</h2>
+        <p>La batería debe ser entregada armada, por lo que <strong>no se debe interactuar internamente</strong> con la
+            instalación de la misma. Para iniciar, solo debe presionar el botón para el encendido del BMS.</p>
+
         <h3>Descarga de la Aplicación</h3>
-        <p>Se debe escanear el código QR que trae el BMS en la parte delantera. Descargue la app desde Play Store buscando <strong>“JK BMS”</strong>.</p>
+        <p>Se debe escanear el código QR que trae el BMS en la parte delantera. Descargue la app desde Play Store
+            buscando <strong>“JK BMS”</strong>.</p>
 
         <div class="image-placeholder">
-            <img src="jk.png" alt="App JK BMS en Play Store">
+            <img src="jk.png" alt="App JK BMS">
             <p class="caption">Referencia visual de la aplicación en la tienda oficial</p>
         </div>
-    </section>
 
-    <section>
-        <h2>2. Configuración y Conexión Bluetooth</h2>
-        <p>Una vez encendido el BMS, entre en la app, acepte todos los términos y condiciones, y encienda el Bluetooth de su teléfono.</p>
+        <h2>2. CONFIGURACIÓN Y CONEXIÓN BLUETOOTH</h2>
+        <p>Una vez encendido el BMS, entre en la app, acepte todos los términos y condiciones, y encienda el Bluetooth
+            de su teléfono.</p>
 
-        <div class="image-placeholder">
-            <img src="1.png" alt="Interfaz Bluetooth App">
-            <p class="caption">Pantalla de búsqueda de dispositivo Bluetooth</p>
+        <div class="info-grid">
+            <div class="image-placeholder">
+                <img src="1.png" alt="Interfaz Bluetooth">
+                <p class="caption">Pantalla de búsqueda de dispositivo</p>
+            </div>
+            <div class="image-placeholder">
+                <img src="2.png" alt="Lista de dispositivos">
+                <p class="caption">Lista de dispositivos encontrados</p>
+            </div>
         </div>
 
-        <div class="image-placeholder">
-            <img src="2.png" alt="Lista de dispositivos">
-            <p class="caption">Lista de dispositivos encontrados para vinculación</p>
-        </div>
-    </section>
+        <div class="page-break"></div>
 
-    <section>
-        <h2>3. Estado General del Sistema</h2>
+        <h2>3. ESTADO GENERAL DEL SISTEMA</h2>
         <p>Al conectarse, se mostrará la pantalla de información de estado. Verifique los siguientes parámetros:</p>
 
         <div class="image-placeholder">
@@ -169,10 +222,10 @@
             <div class="data-card">
                 <h3>Resumen Eléctrico</h3>
                 <ul>
-                    <li><strong>Voltaje Total:</strong> 26.66V (Saludable para sistemas de 24V).</li>
-                    <li><strong>Corriente:</strong> 0.00A (Estado de reposo).</li>
-                    <li><strong>Estado de Carga (SOC):</strong> 99% (Batería llena).</li>
-                    <li><strong>Capacidad:</strong> 39.6Ah / 40.0Ah.</li>
+                    <li><strong>Voltaje Total:</strong> 26.66V (Saludable para 24V)</li>
+                    <li><strong>Corriente:</strong> 0.00A (Estado de reposo)</li>
+                    <li><strong>Estado de Carga (SOC):</strong> 99% (Batería llena)</li>
+                    <li><strong>Capacidad:</strong> 39.6Ah / 40.0Ah</li>
                 </ul>
             </div>
             <div class="data-card">
@@ -184,18 +237,19 @@
                 </ul>
             </div>
         </div>
-    </section>
 
-    <section>
-        <h2>4. Análisis de Resistencia y Conexiones</h2>
-        <p>Verifique el apartado <strong>"Cells Wire Resistance"</strong> para detectar malas conexiones (bornes flojos o cables largos):</p>
+        <h2>4. ANÁLISIS DE RESISTENCIA Y CONEXIONES</h2>
+        <p>Verifique el apartado <strong>"Cells Wire Resistance"</strong> para detectar bornes flojos o cables largos:
+        </p>
         <ul>
             <li>Rango esperado: <strong>0.053 - 0.067 mΩ</strong>.</li>
         </ul>
 
         <div class="danger">
-            <strong>NOTA DE ALERTA - CELDA 08:</strong>
-            <p>La Celda 08 marca <strong>0.113 mΩ</strong>. Es casi el doble que las demás. Se debe revisar obligatoriamente el apriete del terminal o la limpieza de la superficie de contacto en dicha celda, ya que una mayor resistencia genera calor local y caídas de tensión.</p>
+            ⚠️ NOTA DE ALERTA - CELDA 08:
+            <p>La Celda 08 marca 0.113 mΩ Es casi el doble que las demás. Se debe revisar obligatoriamente el apriete
+                del terminal o la limpieza de la superficie de contacto en dicha celda, ya que una mayor resistencia
+                genera calor local y caídas de tensión.</p>
         </div>
 
         <div class="data-card">
@@ -205,13 +259,14 @@
                 <li><strong>Battery T1 / T2:</strong> 25.8°C / 25.5°C.</li>
                 <li><strong>Interruptor Carga:</strong> <span class="status-on">ON</span></li>
                 <li><strong>Interruptor Descarga:</strong> <span class="status-on">ON</span></li>
-                <li><strong>Balanceo:</strong> <span class="status-off">OFF</span> (Solo se activa si la diferencia es mayor a 0.010V).</li>
+                <li><strong>Balanceo:</strong> <span class="status-off">OFF</span> (Solo se activa si la diferencia es
+                    mayor a 0.010V).</li>
             </ul>
         </div>
-    </section>
 
-    <section>
-        <h2>5. Parámetros de Protección y Balanceo</h2>
+        <div class="page-break"></div>
+
+        <h2>5. PARÁMETROS DE PROTECCIÓN Y BALANCEO</h2>
         <table>
             <thead>
                 <tr>
@@ -224,69 +279,70 @@
                 <tr>
                     <td>Cell OVP / OVPR</td>
                     <td>3.650V / 3.450V</td>
-                    <td>Protección y recuperación por sobretensión.</td>
+                    <td>Protección/Recuperación sobretensión</td>
                 </tr>
                 <tr>
                     <td>Cell UVP / UVPR</td>
                     <td>2.580V / 2.800V</td>
-                    <td>Protección y recuperación por bajo voltaje.</td>
+                    <td>Protección/Recuperación bajo voltaje</td>
                 </tr>
                 <tr>
                     <td>Power Off Vol.</td>
                     <td>2.500V</td>
-                    <td>Apagado total para evitar drenaje crítico.</td>
+                    <td>Apagado total de seguridad</td>
                 </tr>
                 <tr>
                     <td>Start Balance Volt.</td>
                     <td>3.40V</td>
-                    <td>El balanceo solo ocurre con la batería casi llena.</td>
+                    <td>Inicio de balanceo (Batería llena)</td>
                 </tr>
                 <tr>
                     <td>Max Balance Curr.</td>
                     <td>1.0A</td>
-                    <td>Corriente de balanceo activa potente.</td>
+                    <td>Corriente de balanceo activa</td>
                 </tr>
                 <tr>
                     <td>Cont. Charge/Discharge</td>
                     <td>20.0A / 50.0A</td>
-                    <td>Límites de corriente segura.</td>
+                    <td>Límites de corriente segura</td>
                 </tr>
             </tbody>
         </table>
-    </section>
 
-    <section>
-        <h2>6. Esquema de Instalación en Nodo</h2>
+        <h2>6. ESQUEMA DE INSTALACIÓN Y ENTORNO</h2>
         <div class="image-placeholder">
             <img src="4.png" alt="Esquema de Conexión">
             <p class="caption">Diagrama de conexión de celdas, BMS y fusibles</p>
         </div>
 
-        <h3>Condiciones del Lugar</h3>
-        <div class="alert">
+        <div class="warning-alert">
+            <strong>Condiciones del Lugar:</strong>
             <ul>
                 <li><strong>Temperatura:</strong> Ideal entre 15°C y 30°C. El calor constante degrada el litio.</li>
-                <li><strong>Ventilación:</strong> Necesaria para disipar calor por efecto Joule en BMS y terminales.</li>
+                <li><strong>Ventilación:</strong> Necesaria para disipar calor por efecto Joule en BMS y terminales.
+                </li>
                 <li><strong>Orientación:</strong> Preferiblemente vertical (terminales arriba). Nunca boca abajo.</li>
                 <li><strong>Cercanía:</strong> Cables cortos al inversor para evitar caídas de tensión.</li>
                 <li><strong>Ambiente:</strong> Seco y libre de polvo conductivo.</li>
             </ul>
         </div>
-    </section>
 
-    <section>
-        <h2>7. Verificación Final</h2>
+        <h2>7. VERIFICACIÓN FINAL</h2>
         <ol>
-            <li><strong>Prueba de Carga:</strong> Aplique una carga fuerte (ej: motor) y observe las resistencias de los cables en la App.</li>
-            <li><strong>Comunicación:</strong> Si usa CAN/RS485, confirme que el inversor lea los mismos datos que la App.</li>
-            <li><strong>Etiquetado:</strong> Pega una etiqueta en el gabinete con los valores de corte (2.58V - 3.65V).</li>
+            <li><strong>Prueba de Carga:</strong> Aplique una carga fuerte (ej: motor) y observe las resistencias de los
+                cables en la App.</li>
+            <li><strong>Comunicación:</strong> Si usa CAN/RS485, confirme que el inversor lea los mismos datos que la
+                App.</li>
+            <li><strong>Etiquetado:</strong> Pega una etiqueta en el gabinete con los valores de corte (2.58V - 3.65V).
+            </li>
         </ol>
-    </section>
 
-    <footer>
-        <p>Protocolos de Instalación de Sistemas de Energía by Jhoan Mendez - 2026</p>
-    </footer>
-</div>
-
+        <div class="footer">
+            &copy; 2026 TECNET.C.A. - Protocolos de Instalación by Jhoan Mendez / Anderson Santander. Prohibida su
+            reproducción sin
+            autorización.
+        </div>
+    </div>
 </body>
+
 </html>
