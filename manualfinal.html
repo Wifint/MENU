@@ -135,7 +135,42 @@
         .page-break {
             page-break-after: always;
         }
+
+        .download-btn {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #004494;
+        }
+
+        .download-btn:before {
+            content: "⬇";
+            margin-right: 8px;
+        }
+
+        /* Ocultar botones en el PDF generado */
+        .html2pdf__page-break {
+            page-break-before: always;
+        }
+
+        .printable-section,
+        .tools-grid,
+        table {
+            page-break-inside: avoid;
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
@@ -149,7 +184,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="content-to-print">
         <header>
             <div class="company-name">TECNET.C.A.</div>
             <div style="text-align: right; font-weight: bold;">PROTOCOLO TÉCNICO</div>
@@ -157,91 +192,133 @@
 
         <h1>Manual de Instalación de Puntos Eléctricos</h1>
 
-        <h2>EQUIPO Y HERRAMIENTAS NECESARIAS</h2>
-        <p>Antes de salir a la instalación, asegúrese de contar con el siguiente kit completo:</p>
-        <div class="tools-grid">
-            <div class="tool-item">Alicate</div>
-            <div class="tool-item">Cinta aislante (Teipe)</div>
-            <div class="tool-item">Cable (calibres según protocolo)</div>
-            <div class="tool-item">Protector para sobre y bajo voltaje</div>
-            <div class="tool-item">Destornilladores (Pala/Estrias)</div>
-            <div class="tool-item">Tester</div>
-            <div class="tool-item">Botas de seguridad (Dieléctricas)</div>
-            <div class="tool-item">Taladro (incluye ramplus y tornillos)</div>
-        </div>
+        <section id="section-tools" class="printable-section">
+            <h2>EQUIPO Y HERRAMIENTAS NECESARIAS</h2>
+            <p>Antes de salir a la instalación, asegúrese de contar con el siguiente kit completo:</p>
+            <div class="tools-grid">
+                <div class="tool-item">Alicate</div>
+                <div class="tool-item">Cinta aislante (Teipe)</div>
+                <div class="tool-item">Cable (calibres según protocolo)</div>
+                <div class="tool-item">Protector para sobre y bajo voltaje</div>
+                <div class="tool-item">Destornilladores (Pala/Estrias)</div>
+                <div class="tool-item">Tester</div>
+                <div class="tool-item">Botas de seguridad (Dieléctricas)</div>
+                <div class="tool-item">Taladro (incluye ramplus y tornillos)</div>
+            </div>
 
-        <div class="danger">
-            ⚠️ SEGURIDAD CRÍTICA: Prohibido el uso de escaleras metálicas. Es obligatorio el uso de las botas de
-            seguridad durante toda la maniobra.
-        </div>
+            <div class="danger">
+                ⚠️ SEGURIDAD CRÍTICA: Prohibido el uso de escaleras metálicas. Es obligatorio el uso de las botas de
+                seguridad durante toda la maniobra.
+            </div>
+        </section>
 
-        <h2>1. SEGURIDAD Y ENTORNO</h2>
-        <ul>
-            <li><strong>Calzado:</strong> No se permite el trabajo sin botas de seguridad.</li>
-            <li><strong>Escaleras:</strong> Utilice solo escaleras de <strong>fibra de vidrio o madera</strong>.</li>
-        </ul>
+        <section id="section-security" class="printable-section">
+            <h2>1. SEGURIDAD Y ENTORNO</h2>
+            <ul>
+                <li><strong>Calzado:</strong> No se permite el trabajo sin botas de seguridad.</li>
+                <li><strong>Escaleras:</strong> Utilice solo escaleras de <strong>fibra de vidrio o madera</strong>.
+                </li>
+            </ul>
+        </section>
 
-        <h2>2. MEDICIÓN DE VOLTAJE (PRE-INSTALACIÓN)</h2>
-        <p>Mida el voltaje en la cuchilla principal con el multímetro y actúe según el rango:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Rango de Voltaje</th>
-                    <th>Estado</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Menor a 85V</td>
-                    <td>Voltaje Bajo</td>
-                    <td><strong>NO INSTALAR.</strong></td>
-                </tr>
-                <tr>
-                    <td>90V - 120V</td>
-                    <td>Voltaje Normal</td>
-                    <td><strong>PROCEDER.</strong></td>
-                </tr>
-                <tr>
-                    <td>Mayor a 125V</td>
-                    <td>Voltaje Alto</td>
-                    <td><strong>NO INSTALAR.</strong></td>
-                </tr>
-            </tbody>
-        </table>
+        <section id="section-voltage" class="printable-section">
+            <h2>2. MEDICIÓN DE VOLTAJE (PRE-INSTALACIÓN)</h2>
+            <p>Mida el voltaje en la cuchilla principal con el multímetro y actúe según el rango:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rango de Voltaje</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Menor a 85V</td>
+                        <td>Voltaje Bajo</td>
+                        <td><strong>NO INSTALAR.</strong></td>
+                    </tr>
+                    <tr>
+                        <td>90V - 120V</td>
+                        <td>Voltaje Normal</td>
+                        <td><strong>PROCEDER.</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Mayor a 125V</td>
+                        <td>Voltaje Alto</td>
+                        <td><strong>NO INSTALAR.</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
         <div class="page-break"></div>
 
-        <h2>3. ESPECIFICACIONES DE INSTALACIÓN</h2>
-        <h3>Ubicación y Distancias:</h3>
-        <ul>
-            <li><strong>Lugares aptos:</strong> Cuartos, salas de estar, porches y patios protegidos del clima.</li>
-            <li><strong>Lugares NO aptos:</strong> Cocinas, baños, techos, garajes o negocios.</li>
-            <li><strong>Límite:</strong> Máximo <strong>50 metros</strong> de cable si se toma de la cuchilla.</li>
-        </ul>
+        <section id="section-specs" class="printable-section">
+            <h2>3. ESPECIFICACIONES DE INSTALACIÓN</h2>
+            <h3>Ubicación y Distancias:</h3>
+            <ul>
+                <li><strong>Lugares aptos:</strong> Cuartos, salas de estar, porches y patios protegidos del clima.</li>
+                <li><strong>Lugares NO aptos:</strong> Cocinas, baños, techos, garajes o negocios.</li>
+                <li><strong>Límite:</strong> Máximo <strong>50 metros</strong> de cable si se toma de la cuchilla.</li>
+            </ul>
 
-        <h3>Selección de Cable (Calibre AWG):</h3>
-        <ul>
-            <li><strong>Desde Poste:</strong> Calibre #8 o #10.</li>
-            <li><strong>Punto de Luz/Interno:</strong> Calibre #10 o #12.</li>
-            <li><strong>Prohibido:</strong> Cables delgados con calibre superior a 16.</li>
-        </ul>
+            <h3>Selección de Cable (Calibre AWG):</h3>
+            <ul>
+                <li><strong>Desde Poste:</strong> Calibre #8 o #10.</li>
+                <li><strong>Punto de Luz/Interno:</strong> Calibre #10 o #12.</li>
+                <li><strong>Prohibido:</strong> Cables delgados con calibre superior a 16.</li>
+            </ul>
+        </section>
 
-        <h2>4. CONEXIONES Y ACABADOS</h2>
-        <ul>
-            <li><strong>Tomas:</strong> Máximo 3 entradas por toma. Evitar regletas.</li>
-            <li><strong>Protección:</strong> Todas las uniones deben estar selladas con teipe. No dejar cables
-                expuestos.</li>
-            <li><strong>Riesgo Térmico:</strong> El cable <strong>no debe tocar láminas de zinc</strong> ni superficies
-                calientes.</li>
-            <li><strong>Protección Extra:</strong> Instalar el <strong>Protector de sobre/bajo voltaje</strong> para
-                resguardar los equipos de red.</li>
-        </ul>
+        <section id="section-connections" class="printable-section">
+            <h2>4. CONEXIONES Y ACABADOS</h2>
+            <ul>
+                <li><strong>Tomas:</strong> Máximo 3 entradas por toma. Evitar regletas.</li>
+                <li><strong>Protección:</strong> Todas las uniones deben estar selladas con teipe. No dejar cables
+                    expuestos.</li>
+                <li><strong>Riesgo Térmico:</strong> El cable <strong>no debe tocar láminas de zinc</strong> ni
+                    superficies
+                    calientes.</li>
+                <li><strong>Protección Extra:</strong> Instalar el <strong>Protector de sobre/bajo voltaje</strong> para
+                    resguardar los equipos de red.</li>
+            </ul>
+        </section>
 
-        <div class="footer">
-            &copy; 2026 TECNET.C.A. - Este documento es propiedad de TECNET.C.A. By Jhoan Méndez. Prohibida su
-            reproducción total o parcial sin autorización.
-        </div>
+    </div>
+
+    <div
+        style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+        <button class="download-btn" onclick="downloadManual()">⬇ Descargar PDF</button>
+    </div>
+
+    <script>
+        function downloadManual() {
+            // Seleccionamos el contenedor principal por ID único
+            const element = document.getElementById('content-to-print');
+
+            const opt = {
+                margin: [10, 10, 10, 10], // top, left, bottom, right
+                filename: 'Manual_Instalacion_Electrica_TECNET.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true,
+                    scrollY: 0
+                },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Usamos el elemento directamente para que html2canvas pueda renderizarlo
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+
+    <div class="footer">
+        &copy; 2026 TECNET.C.A. - Este documento es propiedad de TECNET.C.A. By Jhoan Méndez. Prohibida su
+        reproducción total o parcial sin autorización.
+    </div>
     </div>
 
 </body>
