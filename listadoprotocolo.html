@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Documentación - TECNET.C.A.</title>
+    <link rel="icon" href="logo.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --sidebar-bg: #1a2233;
+            --sidebar-active: #0056b3;
+            --text-gray: #a0aec0;
+            --bg-color: #f4f7f6;
+            --primary-color: #0056b3;
+            --secondary-color: #004494;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+        }
+
+        /* --- SIDEBAR STYLE --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            color: white;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 1.5rem 0.8rem;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            color: var(--text-gray);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .nav-item:hover a,
+        .nav-item.active a {
+            background-color: var(--sidebar-active);
+            color: white;
+        }
+
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-bar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .top-bar p {
+            margin: 0.5rem 0 0;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.15);
+            border-color: rgba(0, 86, 179, 0.2);
+        }
+
+        .card-header {
+            height: 140px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: #999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .add-card {
+            border: 2px dashed #ccc;
+            background: transparent;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            cursor: default;
+        }
+
+        .add-card:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: #bbb;
+        }
+
+        .add-content {
+            text-align: center;
+            color: #999;
+        }
+
+        .add-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            background-color: white;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        .toggle-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -260px;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .toggle-btn {
+                display: block !important;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>TECNET.C.A.</h2>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li class="nav-item"><a href="index2.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+                <li class="nav-item"><a href="#"><i class="fas fa-microchip"></i> <span>Funciones</span></a></li>
+                <li class="nav-item active"><a href="index.html"><i class="fas fa-clipboard-list"></i>
+                        <span>Protocolos</span></a></li>
+                <li class="nav-item"><a href="circulares.html"><i class="fas fa-envelope-open-text"></i>
+                        <span>Circulares</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <button class="toggle-btn" onclick="toggleMenu()" style="display:none;"><i class="fas fa-bars"></i></button>
+            <div class="header-info">
+                <h1>Centro de Documentación Técnica</h1>
+                <p>Protocolos y Manuales Técnicos</p>
+            </div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">v1.0</div>
+        </header>
+
+        <div class="container">
+            <div class="grid">
+                <!-- Manual Card 1 -->
+                <a href="manualfinal.html" class="card">
+                    <div class="card-header">
+                        ⚡
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title">Instalación Eléctrica</h2>
+                        <p class="card-desc">
+                            Protocolo técnico para la instalación de puntos eléctricos, medidas de seguridad y
+                            estándares de
+                            cableado.
+                        </p>
+                        <div class="card-meta">
+                            <span>Actualizado: Ene 2026</span>
+                            <span class="status-badge status-active">Publicado</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Manual Card 2 -->
+                <a href="manual2.html" class="card">
+                    <div class="card-header">
+                        🔋
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title">Instalación Batería LiFePO4</h2>
+                        <p class="card-desc">
+                            Protocolo Técnico de Configuración y Seguridad para baterías LiFePO4 y JK BMS.
+                        </p>
+                        <div class="card-meta">
+                            <span>Actualizado: Ene 2026</span>
+                            <span class="status-badge status-active">Publicado</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Manual Card 3 -->
+                <a href="manual3.html" class="card">
+                    <div class="card-header">
+                        🛠
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title">Protocolos de Soporte, Cobro y Optimización de Servicio</h2>
+                        <p class="card-desc">
+                            Protocolo técnico para la instalación y configuración de televisores y soportes.
+                        </p>
+                        <div class="card-meta">
+                            <span>Actualizado: Feb 2026</span>
+                            <span class="status-badge status-active">Publicado</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Placeholder for future manuals -->
+                <div class="card add-card">
+                    <div class="card-body" style="align-items: center; justify-content: center;">
+                        <div class="add-content">
+                            <span class="add-icon">+</span>
+                            <h3>Próximamente</h3>
+                            <p>Espacio reservado para futuros manuales y protocolos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 TECNET.C.A. - Todos los derechos reservados.
+        </footer>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', function () {
+                navItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
