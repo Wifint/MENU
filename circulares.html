@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circulares y Enlaces Externos - TECNET.C.A.</title>
+    <link rel="icon" href="logo.png" type="image/png" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #004494;
+            --accent-color: #eef4fb;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --bg-color: #f4f7f6;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .url-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .url-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .url-card:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.01);
+            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.1);
+        }
+
+        .url-info h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .url-info p {
+            margin: 0.3rem 0 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .url-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            background-color: white;
+            border-top: 1px solid #eee;
+        }
+
+        /* INSTRUCCIONES PARA AÑADIR NUEVOS ENLACES */
+        /* Para añadir una nueva circular, copia el bloque <a class="url-card"> ... </a> 
+           y cambia el href, el título y la descripción. */
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>TECNET.C.A.</h1>
+        <p>Circulares y Comunicados</p>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="back-button">
+            ← Volver al Menú Principal
+        </a>
+
+        <h2 class="section-title">Listado de Circulares</h2>
+
+        <div class="url-grid">
+
+            <!-- COMIENZO DE BLOQUE DE ENLACE -->
+            <a href="https://docs.google.com/document/d/e/2PACX-1vQYhshXDJWKRgIq6Od_9Vf-zPfGv7GDApgaVFlWlis6ihfpNdNW9jJZRGIQf4X-Tg/pub"
+                target="_blank" class="url-card">
+                <div class="url-info">
+                    <h3>Circular 010-A COMISIONES PERSONAL</h3>
+                    <p>Comunicado sobre comisiones del personal.</p>
+                </div>
+                <div class="url-icon">🔗</div>
+            </a>
+            <!-- FIN DE BLOQUE DE ENLACE -->
+
+            <!-- Añade más enlaces aquí siguiendo el mismo formato -->
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 TECNET.C.A. - Todos los derechos reservados.
+    </footer>
+
+</body>
+
+</html>
