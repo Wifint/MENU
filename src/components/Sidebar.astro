@@ -1,0 +1,104 @@
+---
+const { currentPage = '' } = Astro.props;
+---
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>TECNET.C.A.</h2>
+  </div>
+  <nav class="nav-menu">
+    <ul>
+      <li class={`nav-item ${currentPage === 'index' ? 'active' : ''}`}>
+        <a href="/">
+          <i class="fas fa-home"></i>
+          <span>Inicio</span>
+        </a>
+      </li>
+      <li class={`nav-item ${currentPage === 'funciones' ? 'active' : ''}`}>
+        <a href="#">
+          <i class="fas fa-microchip"></i>
+          <span>Funciones</span>
+        </a>
+      </li>
+      <li class={`nav-item ${currentPage === 'protocolos' ? 'active' : ''}`}>
+        <a href="/listadoprotocolo">
+          <i class="fas fa-clipboard-list"></i>
+          <span>Protocolos</span>
+        </a>
+      </li>
+      <li class={`nav-item ${currentPage === 'circulares' ? 'active' : ''}`}>
+        <a href="/circulares">
+          <i class="fas fa-envelope-open-text"></i>
+          <span>Circulares</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+<style>
+  .sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    color: white;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    z-index: 1000;
+  }
+
+  .sidebar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .nav-menu ul {
+    list-style: none;
+    padding: 1.5rem 0.8rem;
+    margin: 0;
+  }
+
+  .nav-item {
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    color: var(--text-gray);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+
+  .nav-item i {
+    width: 20px;
+    text-align: center;
+  }
+
+  .nav-item:hover a,
+  .nav-item.active a {
+    background-color: var(--sidebar-active);
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      position: fixed;
+      left: -260px;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+  }
+</style>

@@ -1,0 +1,67 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import URLCard from '../components/URLCard.astro';
+
+const circulares = [
+  {
+    url: 'https://docs.google.com/document/d/e/2PACX-1vQYhshXDJWKRgIq6Od_9Vf-zPfGv7GDApgaVFlWlis6ihfpNdNW9jJZRGIQf4X-Tg/pub',
+    title: 'Circular 010-A COMISIONES PERSONAL',
+    description: 'Comunicado sobre comisiones del personal.'
+  },
+  {
+    url: 'https://docs.google.com/document/d/e/2PACX-1vR9QOSQLrIn5L_GxZaXQ1NFWiZ0lsAt0aXG5cwdStRjk81juo2gokZVdMP7huXOBQ/pub',
+    title: 'Circular 040-A Costos de Visitas a los clientes por ticket de soporte técnico de campo',
+    description: 'Comunicado sobre costos de visitas a los clientes por ticket de soporte técnico de campo.'
+  },
+  {
+    url: 'https://docs.google.com/document/d/e/2PACX-1vT9E62QdF_RUMOOG6hXIpTROG6D-FBwiGU8Z7PhdxtxY4TF_We2pjZ9mvLJPN4kBg/pub',
+    title: 'Circular 050-Control de Asistencia, Notificación y Justificación de Faltas',
+    description: 'Comunicado sobre el control de asistencia, notificación y justificación de faltas.'
+  }
+];
+---
+
+<MainLayout 
+  title="Circulares y Enlaces Externos - TECNET.C.A."
+  currentPage="circulares"
+  topBarTitle="TECNET.C.A."
+  topBarSubtitle="Circulares y Comunicados"
+>
+  <div class="container">
+    <h2 class="section-title">Listado de Circulares</h2>
+
+    <div class="url-grid">
+      {circulares.map(circular => (
+        <URLCard 
+          url={circular.url}
+          title={circular.title}
+          description={circular.description}
+        />
+      ))}
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .container {
+    flex: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .section-title {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .url-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+</style>

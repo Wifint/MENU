@@ -1,0 +1,112 @@
+---
+import ManualLayout from '../layouts/ManualLayout.astro';
+---
+
+<ManualLayout title="Manual Batería LiFePO4 - TECNET.C.A.">
+  <header>
+    <div class="company-name">TECNET.C.A.</div>
+    <div style="text-align: right; font-weight: bold;">PROTOCOLO TÉCNICO</div>
+  </header>
+
+  <h1>Protocolo Técnico de Configuración y Seguridad<br/>Baterías LiFePO4 y JK BMS</h1>
+
+  <section class="printable-section">
+    <h2>INTRODUCCIÓN</h2>
+    <p>Este manual proporciona las directrices técnicas para la instalación, configuración y mantenimiento de baterías LiFePO4 con sistema de gestión JK BMS.</p>
+  </section>
+
+  <section class="printable-section">
+    <h2>ESPECIFICACIONES TÉCNICAS</h2>
+    <h3>Características de las Baterías LiFePO4:</h3>
+    <ul>
+      <li><strong>Voltaje nominal:</strong> 12.8V / 25.6V (según configuración)</li>
+      <li><strong>Química:</strong> Litio Ferro Fosfato (LiFePO4)</li>
+      <li><strong>Ciclos de vida:</strong> 3000-5000 ciclos al 80% DOD</li>
+      <li><strong>Temperatura de operación:</strong> -20°C a 60°C</li>
+    </ul>
+
+    <h3>Sistema JK BMS:</h3>
+    <ul>
+      <li><strong>Protección contra sobrecarga</strong></li>
+      <li><strong>Protección contra descarga profunda</strong></li>
+      <li><strong>Balance de celdas automático</strong></li>
+      <li><strong>Monitoreo de temperatura</strong></li>
+    </ul>
+  </section>
+
+  <section class="printable-section">
+    <h2>PROCEDIMIENTO DE INSTALACIÓN</h2>
+    
+    <h3>1. Inspección Pre-Instalación</h3>
+    <ul>
+      <li>Verificar integridad física de las baterías</li>
+      <li>Confirmar voltaje de cada celda (debe estar entre 3.2V - 3.4V)</li>
+      <li>Revisar conexiones del BMS</li>
+    </ul>
+
+    <h3>2. Conexión del BMS</h3>
+    <ul>
+      <li>Conectar cables de balance en orden (B1, B2, B3, B4...)</li>
+      <li>Verificar polaridad antes de energizar</li>
+      <li>Conectar sensor de temperatura</li>
+    </ul>
+
+    <h3>3. Configuración de Parámetros</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Parámetro</th>
+          <th>Valor Recomendado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Voltaje de carga máximo</td>
+          <td>14.6V (12V) / 29.2V (24V)</td>
+        </tr>
+        <tr>
+          <td>Voltaje de corte por descarga</td>
+          <td>10.0V (12V) / 20.0V (24V)</td>
+        </tr>
+        <tr>
+          <td>Corriente de balance</td>
+          <td>1.2A - 2.0A</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="printable-section">
+    <h2>MEDIDAS DE SEGURIDAD</h2>
+    <div class="danger">
+      ⚠️ ADVERTENCIAS CRÍTICAS:
+      <ul>
+        <li>NO invertir polaridad durante la instalación</li>
+        <li>NO cortocircuitar los terminales</li>
+        <li>NO exponer a temperaturas superiores a 60°C</li>
+        <li>Usar equipo de protección personal (guantes aislantes, gafas)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="printable-section">
+    <h2>MANTENIMIENTO</h2>
+    <h3>Revisión Mensual:</h3>
+    <ul>
+      <li>Verificar voltaje de celdas (diferencia máxima: 50mV)</li>
+      <li>Inspeccionar conexiones y terminales</li>
+      <li>Revisar temperatura de operación</li>
+    </ul>
+
+    <h3>Revisión Semestral:</h3>
+    <ul>
+      <li>Balance completo de celdas</li>
+      <li>Actualización de firmware del BMS (si disponible)</li>
+      <li>Prueba de capacidad</li>
+    </ul>
+  </section>
+
+  <div class="warning">
+    <strong>Nota:</strong> Para visualizar las imágenes de configuración detalladas, consulte el manual HTML original (manual2.html) que contiene diagramas de conexión y capturas de pantalla de la aplicación JK BMS.
+  </div>
+</ManualLayout>

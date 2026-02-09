@@ -1,0 +1,99 @@
+---
+import ManualLayout from '../layouts/ManualLayout.astro';
+---
+
+<ManualLayout title="Manual de Instalación - TECNET.C.A.">
+  <header>
+    <div class="company-name">TECNET.C.A.</div>
+    <div style="text-align: right; font-weight: bold;">PROTOCOLO TÉCNICO</div>
+  </header>
+
+  <h1>Manual de Instalación de Puntos Eléctricos</h1>
+
+  <section id="section-tools" class="printable-section">
+    <h2>EQUIPO Y HERRAMIENTAS NECESARIAS</h2>
+    <p>Antes de salir a la instalación, asegúrese de contar con el siguiente kit completo:</p>
+    <div class="tools-grid">
+      <div class="tool-item">Alicate</div>
+      <div class="tool-item">Cinta aislante (Teipe)</div>
+      <div class="tool-item">Cable (calibres según protocolo)</div>
+      <div class="tool-item">Protector para sobre y bajo voltaje</div>
+      <div class="tool-item">Destornilladores (Pala/Estrias)</div>
+      <div class="tool-item">Tester</div>
+      <div class="tool-item">Botas de seguridad (Dieléctricas)</div>
+      <div class="tool-item">Taladro (incluye ramplus y tornillos)</div>
+    </div>
+
+    <div class="danger">
+      ⚠️ SEGURIDAD CRÍTICA: Prohibido el uso de escaleras metálicas. Es obligatorio el uso de las botas de seguridad durante toda la maniobra.
+    </div>
+  </section>
+
+  <section id="section-security" class="printable-section">
+    <h2>1. SEGURIDAD Y ENTORNO</h2>
+    <ul>
+      <li><strong>Calzado:</strong> No se permite el trabajo sin botas de seguridad.</li>
+      <li><strong>Escaleras:</strong> Utilice solo escaleras de <strong>fibra de vidrio o madera</strong>.</li>
+    </ul>
+  </section>
+
+  <section id="section-voltage" class="printable-section">
+    <h2>2. MEDICIÓN DE VOLTAJE (PRE-INSTALACIÓN)</h2>
+    <p>Mida el voltaje en la cuchilla principal con el multímetro y actúe según el rango:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rango de Voltaje</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Menor a 85V</td>
+          <td>Voltaje Bajo</td>
+          <td><strong>NO INSTALAR.</strong></td>
+        </tr>
+        <tr>
+          <td>90V - 120V</td>
+          <td>Voltaje Normal</td>
+          <td><strong>PROCEDER.</strong></td>
+        </tr>
+        <tr>
+          <td>Mayor a 125V</td>
+          <td>Voltaje Alto</td>
+          <td><strong>NO INSTALAR.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="page-break"></div>
+
+  <section id="section-specs" class="printable-section">
+    <h2>3. ESPECIFICACIONES DE INSTALACIÓN</h2>
+    <h3>Ubicación y Distancias:</h3>
+    <ul>
+      <li><strong>Lugares aptos:</strong> Cuartos, salas de estar, porches y patios protegidos del clima.</li>
+      <li><strong>Lugares NO aptos:</strong> Cocinas, baños, techos, garajes o negocios.</li>
+      <li><strong>Límite:</strong> Máximo <strong>50 metros</strong> de cable si se toma de la cuchilla.</li>
+    </ul>
+
+    <h3>Selección de Cable (Calibre AWG):</h3>
+    <ul>
+      <li><strong>Desde Poste:</strong> Calibre #8 o #10.</li>
+      <li><strong>Punto de Luz/Interno:</strong> Calibre #10 o #12.</li>
+      <li><strong>Prohibido:</strong> Cables delgados con calibre superior a 16.</li>
+    </ul>
+  </section>
+
+  <section id="section-connections" class="printable-section">
+    <h2>4. CONEXIONES Y ACABADOS</h2>
+    <ul>
+      <li><strong>Tomas:</strong> Máximo 3 entradas por toma. Evitar regletas.</li>
+      <li><strong>Protección:</strong> Todas las uniones deben estar selladas con teipe. No dejar cables expuestos.</li>
+      <li><strong>Riesgo Térmico:</strong> El cable <strong>no debe tocar láminas de zinc</strong> ni superficies calientes.</li>
+      <li><strong>Protección Extra:</strong> Instalar el <strong>Protector de sobre/bajo voltaje</strong> para resguardar los equipos de red.</li>
+    </ul>
+  </section>
+</ManualLayout>

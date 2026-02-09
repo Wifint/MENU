@@ -1,0 +1,25 @@
+:root {
+  --sidebar-bg: #1a2233;
+  --sidebar-active: #0056b3;
+  --text-gray: #a0aec0;
+  --bg-color: #f4f7f6;
+  --primary-color: #0056b3;
+  --secondary-color: #004494;
+  --card-bg: #ffffff;
+  --text-color: #333;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  min-height: 100vh;
+}

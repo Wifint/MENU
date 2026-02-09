@@ -1,0 +1,50 @@
+---
+const { url, title, description } = Astro.props;
+---
+
+<a href={url} target="_blank" class="url-card">
+  <div class="url-info">
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+  <div class="url-icon">🔗</div>
+</a>
+
+<style>
+  .url-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+    border: 1px solid transparent;
+  }
+
+  .url-card:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.01);
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.1);
+  }
+
+  .url-info h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+  }
+
+  .url-info p {
+    margin: 0.3rem 0 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .url-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+</style>
