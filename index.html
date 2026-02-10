@@ -167,10 +167,43 @@
                 left: 0;
             }
         }
+
+        /* --- MOBILE OVERLAY --- */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .toggle-btn {
+                display: block;
+            }
+        }
     </style>
 </head>
 
 <body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -181,7 +214,7 @@
                 <li class="nav-item active"><a href="index.html">
                         <i class="fas fa-home"></i> <span>Inicio</span>
                     </a></li>
-                <li class="nav-item"><a href="#">
+                <li class="nav-item"><a href="funciones.html">
                         <i class="fas fa-microchip"></i> <span>Funciones</span>
                     </a></li>
                 <li class="nav-item"><a href="listadoprotocolo.html">
@@ -198,7 +231,7 @@
 
     <main class="main-content">
         <header class="top-bar">
-            <button class="toggle-btn" onclick="toggleMenu()" style="display:none;"><i class="fas fa-bars"></i></button>
+            <button class="toggle-btn" id="menuBtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
             <div class="header-info">
                 <h1>Centro de Documentación Técnica</h1>
                 <p>Bienvenido al Sistema de Gestión de TECNET.C.A.</p>
@@ -244,7 +277,12 @@
     </main>
 
     <script>
-        function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
 
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
