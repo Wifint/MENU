@@ -2,7 +2,7 @@
   "functions": {
     "api/*.php": {
       "runtime": "vercel-php@0.7.2",
-      "includeFiles": "tecnet.sqlite"
+      "includeFiles": "database/tecnet.sqlite"
     }
   },
   "rewrites": [

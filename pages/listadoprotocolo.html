@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funciones y Responsabilidades - TECNET.C.A.</title>
+    <title>Panel de Documentación - TECNET.C.A.</title>
     <link rel="icon" href="logo.png" type="image/png" sizes="32x32">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -116,61 +116,128 @@
 
         .container {
             flex: 1;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
             width: 100%;
             box-sizing: border-box;
         }
 
-        .section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .url-grid {
+        .grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
         }
 
-        .url-card {
-            background: white;
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.15);
+            border-color: rgba(0, 86, 179, 0.2);
+        }
+
+        .card-header {
+            height: 140px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .card-body {
             padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: #999;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-            border: 1px solid transparent;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
         }
 
-        .url-card:hover {
-            border-color: var(--primary-color);
-            transform: scale(1.01);
-            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.1);
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
-        .url-info h3 {
-            margin: 0;
-            color: var(--primary-color);
-            font-size: 1.1rem;
+        .status-active {
+            background-color: #e3f2fd;
+            color: #1976d2;
         }
 
-        .url-info p {
-            margin: 0.3rem 0 0;
+        .add-card {
+            border: 2px dashed #ccc;
+            background: transparent;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            cursor: default;
+        }
+
+        .add-card:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: #bbb;
+        }
+
+        .add-content {
+            text-align: center;
+            color: #999;
+        }
+
+        .add-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            background-color: white;
+            border-top: 1px solid #eee;
             font-size: 0.9rem;
-            color: #666;
-        }
-
-        .url-icon {
-            font-size: 1.5rem;
-            color: var(--primary-color);
         }
 
         /* --- MOBILE OVERLAY --- */
@@ -187,14 +254,6 @@
 
         .sidebar-overlay.active {
             display: block;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #888;
-            background-color: white;
-            border-top: 1px solid #eee;
         }
 
         .toggle-btn {
@@ -218,6 +277,10 @@
 
             .toggle-btn {
                 display: block !important;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -323,10 +386,10 @@
         </div>
         <nav class="nav-menu">
             <ul>
-                <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
-                <li class="nav-item active"><a href="funciones.html"><i class="fas fa-microchip"></i>
+                <li class="nav-item"><a href="../index.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+                <li class="nav-item"><a href="funciones.html"><i class="fas fa-microchip"></i>
                         <span>Funciones</span></a></li>
-                <li class="nav-item"><a href="listadoprotocolo.html"><i class="fas fa-clipboard-list"></i>
+                <li class="nav-item active"><a href="listadoprotocolo.html"><i class="fas fa-clipboard-list"></i>
                         <span>Protocolos</span></a></li>
                 <li class="nav-item"><a href="circulares.html"><i class="fas fa-envelope-open-text"></i>
                         <span>Circulares</span></a></li>
@@ -338,25 +401,23 @@
         <header class="top-bar">
             <button class="toggle-btn" id="menuBtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
             <div class="header-info">
-                <h1>TECNET.C.A.</h1>
-                <p>Funciones y Responsabilidades</p>
+                <h1>Centro de Documentación Técnica</h1>
+                <p>Protocolos y Manuales Técnicos</p>
             </div>
             <div style="font-size: 0.8rem; opacity: 0.8;">v1.0</div>
         </header>
 
         <div class="container">
-            <h2 class="section-title">Manuales de Funciones</h2>
-
             <!-- Loading Spinner -->
             <div id="loadingSpinner" class="loading-spinner">
-                <i class="fas fa-spinner fa-spin"></i> Cargando funciones...
+                <i class="fas fa-spinner fa-spin"></i> Cargando protocolos...
             </div>
 
             <!-- Error Message -->
             <div id="errorMessage" class="error-message" style="display: none;"></div>
 
             <!-- Dynamic Content Container -->
-            <div id="funcionesGrid" class="url-grid"></div>
+            <div id="protocolosGrid" class="grid"></div>
 
             <!-- Pagination Controls -->
             <div id="paginationContainer" class="pagination-container" style="display: none;">
@@ -388,24 +449,24 @@
         });
 
         // ========== PAGINATION SYSTEM ==========
-        const API_URL = 'api/api_funciones.php';
+        const API_URL = '../api/api_protocolos.php';
         const RECORDS_PER_PAGE = 10;
         let currentPage = 1;
 
         /**
-         * Carga las funciones desde el servidor
+         * Carga los protocolos desde el servidor
          * @param {number} page - Número de página a cargar
          */
-        async function loadFunciones(page = 1) {
+        async function loadProtocolos(page = 1) {
             const loadingSpinner = document.getElementById('loadingSpinner');
             const errorMessage = document.getElementById('errorMessage');
-            const funcionesGrid = document.getElementById('funcionesGrid');
+            const protocolosGrid = document.getElementById('protocolosGrid');
             const paginationContainer = document.getElementById('paginationContainer');
 
             // Mostrar loading
             loadingSpinner.style.display = 'block';
             errorMessage.style.display = 'none';
-            funcionesGrid.innerHTML = '';
+            protocolosGrid.innerHTML = '';
             paginationContainer.style.display = 'none';
 
             try {
@@ -424,8 +485,8 @@
                 // Ocultar loading
                 loadingSpinner.style.display = 'none';
 
-                // Renderizar funciones
-                renderFunciones(result.data);
+                // Renderizar protocolos
+                renderProtocolos(result.data);
 
                 // Renderizar paginación
                 if (result.pagination.total_records > 0) {
@@ -446,7 +507,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
             } catch (error) {
-                console.error('Error al cargar funciones:', error);
+                console.error('Error al cargar protocolos:', error);
                 loadingSpinner.style.display = 'none';
                 errorMessage.textContent = `Error: ${error.message}. Por favor, verifica que el servidor PHP esté funcionando y la base de datos esté configurada.`;
                 errorMessage.style.display = 'block';
@@ -454,24 +515,32 @@
         }
 
         /**
-         * Renderiza las funciones en el DOM
-         * @param {Array} funciones - Array de objetos función
+         * Renderiza los protocolos en el DOM (formato de tarjetas)
+         * @param {Array} protocolos - Array de objetos protocolo
          */
-        function renderFunciones(funciones) {
-            const funcionesGrid = document.getElementById('funcionesGrid');
+        function renderProtocolos(protocolos) {
+            const protocolosGrid = document.getElementById('protocolosGrid');
 
-            if (funciones.length === 0) {
-                funcionesGrid.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">No hay funciones disponibles.</p>';
+            if (protocolos.length === 0) {
+                protocolosGrid.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem; grid-column: 1/-1;">No hay protocolos disponibles.</p>';
                 return;
             }
 
-            funcionesGrid.innerHTML = funciones.map(funcion => `
-                <a href="${escapeHtml(funcion.url)}" target="_blank" class="url-card">
-                    <div class="url-info">
-                        <h3>${escapeHtml(funcion.titulo)}</h3>
-                        <p>${escapeHtml(funcion.descripcion || '')}</p>
+            protocolosGrid.innerHTML = protocolos.map(protocolo => `
+                <a href="${escapeHtml(protocolo.url)}" class="card">
+                    <div class="card-header">
+                        ${escapeHtml(protocolo.icono || '⚡')}
                     </div>
-                    <div class="url-icon"><i class="fas fa-file-word"></i></div>
+                    <div class="card-body">
+                        <h2 class="card-title">${escapeHtml(protocolo.titulo)}</h2>
+                        <p class="card-desc">
+                            ${escapeHtml(protocolo.descripcion || '')}
+                        </p>
+                        <div class="card-meta">
+                            <span>Actualizado: ${escapeHtml(protocolo.fecha_actualizacion || 'N/A')}</span>
+                            <span class="status-badge status-active">${escapeHtml(protocolo.estado || 'Publicado')}</span>
+                        </div>
+                    </div>
                 </a>
             `).join('');
         }
@@ -529,7 +598,7 @@
          */
         function changePage(page) {
             if (page !== currentPage) {
-                loadFunciones(page);
+                loadProtocolos(page);
             }
         }
 
@@ -547,7 +616,7 @@
         // ========== INICIALIZACIÓN ==========
         // Cargar la primera página al cargar el documento
         document.addEventListener('DOMContentLoaded', function () {
-            loadFunciones(1);
+            loadProtocolos(1);
         });
     </script>
 
