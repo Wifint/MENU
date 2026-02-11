@@ -283,6 +283,96 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* --- PAGINATION STYLES --- */
+        .pagination-container {
+            margin-top: 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid #eee;
+        }
+
+        .pagination-info {
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .pagination-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            min-width: 40px;
+            height: 40px;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: white;
+            color: var(--text-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 86, 179, 0.2);
+        }
+
+        .page-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-btn.last-btn {
+            padding: 0.5rem 1.2rem;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 3rem;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 2rem;
+            color: #d32f2f;
+            background: #ffebee;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .pagination-buttons {
+                gap: 0.3rem;
+            }
+
+            .page-btn {
+                min-width: 35px;
+                height: 35px;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 
@@ -318,70 +408,21 @@
         </header>
 
         <div class="container">
-            <div class="grid">
-                <!-- Manual Card 1 -->
-                <a href="manualfinal.html" class="card">
-                    <div class="card-header">
-                        ⚡
-                    </div>
-                    <div class="card-body">
-                        <h2 class="card-title">Instalación Eléctrica</h2>
-                        <p class="card-desc">
-                            Protocolo técnico para la instalación de puntos eléctricos, medidas de seguridad y
-                            estándares de
-                            cableado.
-                        </p>
-                        <div class="card-meta">
-                            <span>Actualizado: Ene 2026</span>
-                            <span class="status-badge status-active">Publicado</span>
-                        </div>
-                    </div>
-                </a>
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i> Cargando protocolos...
+            </div>
 
-                <!-- Manual Card 2 -->
-                <a href="manual2.html" class="card">
-                    <div class="card-header">
-                        🔋
-                    </div>
-                    <div class="card-body">
-                        <h2 class="card-title">Instalación Batería LiFePO4</h2>
-                        <p class="card-desc">
-                            Protocolo Técnico de Configuración y Seguridad para baterías LiFePO4 y JK BMS.
-                        </p>
-                        <div class="card-meta">
-                            <span>Actualizado: Ene 2026</span>
-                            <span class="status-badge status-active">Publicado</span>
-                        </div>
-                    </div>
-                </a>
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
 
-                <!-- Manual Card 3 -->
-                <a href="manual3.html" class="card">
-                    <div class="card-header">
-                        🛠
-                    </div>
-                    <div class="card-body">
-                        <h2 class="card-title">Protocolos de Soporte, Cobro y Optimización de Servicio</h2>
-                        <p class="card-desc">
-                            Protocolo técnico para la instalación y configuración de televisores y soportes.
-                        </p>
-                        <div class="card-meta">
-                            <span>Actualizado: Feb 2026</span>
-                            <span class="status-badge status-active">Publicado</span>
-                        </div>
-                    </div>
-                </a>
+            <!-- Dynamic Content Container -->
+            <div id="protocolosGrid" class="grid"></div>
 
-                <!-- Placeholder for future manuals -->
-                <div class="card add-card">
-                    <div class="card-body" style="align-items: center; justify-content: center;">
-                        <div class="add-content">
-                            <span class="add-icon">+</span>
-                            <h3>Próximamente</h3>
-                            <p>Espacio reservado para futuros manuales y protocolos.</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Pagination Controls -->
+            <div id="paginationContainer" class="pagination-container" style="display: none;">
+                <div id="paginationInfo" class="pagination-info"></div>
+                <div id="paginationButtons" class="pagination-buttons"></div>
             </div>
         </div>
 
@@ -391,6 +432,7 @@
     </main>
 
     <script>
+        // ========== MENU TOGGLE FUNCTIONS ==========
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
@@ -404,6 +446,177 @@
                 navItems.forEach(i => i.classList.remove('active'));
                 this.classList.add('active');
             });
+        });
+
+        // ========== PAGINATION SYSTEM ==========
+        const API_URL = 'api_protocolos.php';
+        const RECORDS_PER_PAGE = 10;
+        let currentPage = 1;
+
+        /**
+         * Carga los protocolos desde el servidor
+         * @param {number} page - Número de página a cargar
+         */
+        async function loadProtocolos(page = 1) {
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const errorMessage = document.getElementById('errorMessage');
+            const protocolosGrid = document.getElementById('protocolosGrid');
+            const paginationContainer = document.getElementById('paginationContainer');
+
+            // Mostrar loading
+            loadingSpinner.style.display = 'block';
+            errorMessage.style.display = 'none';
+            protocolosGrid.innerHTML = '';
+            paginationContainer.style.display = 'none';
+
+            try {
+                const response = await fetch(`${API_URL}?page=${page}&limit=${RECORDS_PER_PAGE}`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    throw new Error(result.error || 'Error al cargar los datos');
+                }
+
+                // Ocultar loading
+                loadingSpinner.style.display = 'none';
+
+                // Renderizar protocolos
+                renderProtocolos(result.data);
+
+                // Renderizar paginación
+                if (result.pagination.total_records > 0) {
+                    renderPagination(
+                        result.pagination.current_page,
+                        result.pagination.total_pages,
+                        result.pagination.from,
+                        result.pagination.to,
+                        result.pagination.total_records
+                    );
+                    paginationContainer.style.display = 'block';
+                }
+
+                // Actualizar página actual
+                currentPage = result.pagination.current_page;
+
+                // Scroll suave al inicio del contenido
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Error al cargar protocolos:', error);
+                loadingSpinner.style.display = 'none';
+                errorMessage.textContent = `Error: ${error.message}. Por favor, verifica que el servidor PHP esté funcionando y la base de datos esté configurada.`;
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        /**
+         * Renderiza los protocolos en el DOM (formato de tarjetas)
+         * @param {Array} protocolos - Array de objetos protocolo
+         */
+        function renderProtocolos(protocolos) {
+            const protocolosGrid = document.getElementById('protocolosGrid');
+
+            if (protocolos.length === 0) {
+                protocolosGrid.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem; grid-column: 1/-1;">No hay protocolos disponibles.</p>';
+                return;
+            }
+
+            protocolosGrid.innerHTML = protocolos.map(protocolo => `
+                <a href="${escapeHtml(protocolo.url)}" class="card">
+                    <div class="card-header">
+                        ${escapeHtml(protocolo.icono || '⚡')}
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title">${escapeHtml(protocolo.titulo)}</h2>
+                        <p class="card-desc">
+                            ${escapeHtml(protocolo.descripcion || '')}
+                        </p>
+                        <div class="card-meta">
+                            <span>Actualizado: ${escapeHtml(protocolo.fecha_actualizacion || 'N/A')}</span>
+                            <span class="status-badge status-active">${escapeHtml(protocolo.estado || 'Publicado')}</span>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        /**
+         * Renderiza los controles de paginación
+         * @param {number} currentPage - Página actual
+         * @param {number} totalPages - Total de páginas
+         * @param {number} from - Registro inicial
+         * @param {number} to - Registro final
+         * @param {number} totalRecords - Total de registros
+         */
+        function renderPagination(currentPage, totalPages, from, to, totalRecords) {
+            const paginationInfo = document.getElementById('paginationInfo');
+            const paginationButtons = document.getElementById('paginationButtons');
+
+            // Actualizar texto informativo
+            paginationInfo.textContent = `Mostrando registros del ${from} al ${to} de un total de ${totalRecords}`;
+
+            // Generar botones de paginación
+            let buttonsHTML = '';
+
+            // Determinar rango de páginas a mostrar
+            const maxButtons = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+            let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+
+            // Ajustar si estamos cerca del final
+            if (endPage - startPage < maxButtons - 1) {
+                startPage = Math.max(1, endPage - maxButtons + 1);
+            }
+
+            // Botón "Primera" (si no estamos en la primera página)
+            if (currentPage > 1) {
+                buttonsHTML += `<button class="page-btn" onclick="changePage(1)">Primera</button>`;
+            }
+
+            // Botones numerados
+            for (let i = startPage; i <= endPage; i++) {
+                const activeClass = i === currentPage ? 'active' : '';
+                buttonsHTML += `<button class="page-btn ${activeClass}" onclick="changePage(${i})">${i}</button>`;
+            }
+
+            // Botón "Última" (si no estamos en la última página)
+            if (currentPage < totalPages) {
+                buttonsHTML += `<button class="page-btn last-btn" onclick="changePage(${totalPages})">Última</button>`;
+            }
+
+            paginationButtons.innerHTML = buttonsHTML;
+        }
+
+        /**
+         * Cambia a una página específica
+         * @param {number} page - Número de página
+         */
+        function changePage(page) {
+            if (page !== currentPage) {
+                loadProtocolos(page);
+            }
+        }
+
+        /**
+         * Escapa caracteres HTML para prevenir XSS
+         * @param {string} text - Texto a escapar
+         * @returns {string} Texto escapado
+         */
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ========== INICIALIZACIÓN ==========
+        // Cargar la primera página al cargar el documento
+        document.addEventListener('DOMContentLoaded', function () {
+            loadProtocolos(1);
         });
     </script>
 
