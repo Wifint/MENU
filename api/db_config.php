@@ -3,8 +3,8 @@
  * Database Configuration (SQLite version for Vercel)
  */
 
-// Ruta al archivo de base de datos SQLite
-define('DB_FILE', __DIR__ . '/tecnet.sqlite');
+// Ruta al archivo de base de datos SQLite (ahora un nivel arriba)
+define('DB_FILE', __DIR__ . '/../tecnet.sqlite');
 
 /**
  * Obtiene una conexión PDO a la base de datos SQLite
