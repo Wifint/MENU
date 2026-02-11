@@ -8,7 +8,35 @@
   "rewrites": [
     {
       "source": "/manual",
-      "destination": "/manualfinal"
+      "destination": "/manuales/manualfinal.html"
+    },
+    {
+      "source": "/manualfinal.html",
+      "destination": "/manuales/manualfinal.html"
+    },
+    {
+      "source": "/manual2.html",
+      "destination": "/manuales/manual2.html"
+    },
+    {
+      "source": "/manual3.html",
+      "destination": "/manuales/manual3.html"
+    },
+    {
+      "source": "/listadoprotocolo.html",
+      "destination": "/pages/listadoprotocolo.html"
+    },
+    {
+      "source": "/listadoprotocolos.html",
+      "destination": "/pages/listadoprotocolo.html"
+    },
+    {
+      "source": "/funciones.html",
+      "destination": "/pages/funciones.html"
+    },
+    {
+      "source": "/circulares.html",
+      "destination": "/pages/circulares.html"
     }
   ]
 }
