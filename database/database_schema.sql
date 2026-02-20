@@ -55,7 +55,8 @@ INSERT INTO circulares (titulo, descripcion, url) VALUES
 ('Circular 000-A Clasificación Técnico Operativo', 'Comunicado sobre clasificación Técnico Operativo.', 'https://docs.google.com/document/d/1OdtA95-vHzy9y-JUeNP8MrGOicp0ozzO/edit?usp=drive_link&ouid=111277615836803157702&rtpof=true&sd=true'),
 ('PROCEDIMIENTO OBLIGATORIO PARA TRABAJOS EN RESPALDO ELÉCTRICO', 'Comunicado sobre procedimiento obligatorio para trabajos en respaldo eléctrico.', 'https://docs.google.com/document/d/1gAbTqSISCe7yu683tvN3iD3hs1uD3PfX/edit?usp=sharing&ouid=111277615836803157702&rtpof=true&sd=true'),
 ('CIRCULAR INFORMATIVA: PROTOCOLOS Y PROCEDIMIENTOS PARA INSTALACIÓN DE FIBRA ÓPTICA Y ATENCIÓN DE REPORTES CABLEADOS Y DE FIBRA.', 'Comunicado sobre instalación de fibra óptica y atención de reportes cableados y de fibra.', 'https://docs.google.com/document/d/1wGJItYLNyWImcRwh8RySCZxmnRJs6Ts1/edit?usp=sharing&ouid=111277615836803157702&rtpof=true&sd=true'),
-('ORDEN DE PERMANENCIA ESTRICTA EN OFICINAS ASIGNADAS PARA TÉCNICOS DE CAMPO.', 'Comunicado sobre permanencia estricta en oficinas asignadas para técnicos de campo.', 'https://docs.google.com/document/d/1miGWB-arRnpemdmov8A_9br1tyUU0Mwx/edit?usp=sharing&ouid=111277615836803157702&rtpof=true&sd=true');
+('ORDEN DE PERMANENCIA ESTRICTA EN OFICINAS ASIGNADAS PARA TÉCNICOS DE CAMPO.', 'Comunicado sobre permanencia estricta en oficinas asignadas para técnicos de campo.', 'https://docs.google.com/document/d/1miGWB-arRnpemdmov8A_9br1tyUU0Mwx/edit?usp=sharing&ouid=111277615836803157702&rtpof=true&sd=true'),
+('Circular 055-A Estructura organizativa', 'Comunicado sobre estructura organizativa por zonas.', 'https://docs.google.com/document/d/e/2PACX-1vTkRhfpqzUO-BV-3cYVYFexTCnrNQ3kQgTRZS3_VfjFhg3KUdgm0je0ceSnnK4sYw/pub');
 
 -- Insertar datos de ejemplo para Funciones
 INSERT INTO funciones (titulo, descripcion, url) VALUES
