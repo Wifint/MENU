@@ -1,20 +1,29 @@
 [
   {
     "id": 1,
-    "titulo": "Protocolo de Instalación",
-    "descripcion": "Pasos para instalación de equipos",
-    "url": "#"
+    "titulo": "Instalación Eléctrica",
+    "descripcion": "Protocolo técnico para la instalación de puntos eléctricos, medidas de seguridad y estándares de cableado.",
+    "icono": "⚡",
+    "url": "/manuales/manualfinal.html",
+    "fecha_actualizacion": "Ene 2026",
+    "estado": "Publicado"
   },
   {
     "id": 2,
-    "titulo": "Protocolo de Mantenimiento",
-    "descripcion": "Procedimientos de mantenimiento preventivo",
-    "url": "#"
+    "titulo": "Instalación Batería LiFePO4",
+    "descripcion": "Protocolo Técnico de Configuración y Seguridad para baterías LiFePO4 y JK BMS.",
+    "icono": "🔋",
+    "url": "/manuales/manual2.html",
+    "fecha_actualizacion": "Ene 2026",
+    "estado": "Publicado"
   },
   {
     "id": 3,
-    "titulo": "Protocolo de Seguridad",
-    "descripcion": "Normas de seguridad eléctrica",
-    "url": "#"
+    "titulo": "Protocolos de Soporte, Cobro y Optimización de Servicio",
+    "descripcion": "Protocolo técnico para la instalación y configuración de televisores y soportes.",
+    "icono": "🛠",
+    "url": "/manuales/manual3.html",
+    "fecha_actualizacion": "Feb 2026",
+    "estado": "Publicado"
   }
 ]

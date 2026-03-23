@@ -1,20 +1,8 @@
 [
   {
     "id": 1,
-    "titulo": "Manual del Técnico de Campo",
-    "descripcion": "Guía completa para técnicos de campo",
-    "url": "#"
-  },
-  {
-    "id": 2,
-    "titulo": "Funciones del Supervisor",
-    "descripcion": "Responsabilidades del supervisor de área",
-    "url": "#"
-  },
-  {
-    "id": 3,
-    "titulo": "Manual del Administrador",
-    "descripcion": "Guía para administradores del sistema",
-    "url": "#"
+    "titulo": "MANUAL DE FUNCIONES - COORDINADOR TÉCNICO OPERATIVO",
+    "descripcion": "Documento detallado de funciones y responsabilidades del Coordinador Técnico Operativo.",
+    "url": "https://docs.google.com/document/d/1dR60cV3TtTNMHlY9fcpdwAhCCDigfWNX/edit?usp=sharing&ouid=111277615836803157702&rtpof=true&sd=true"
   }
 ]
