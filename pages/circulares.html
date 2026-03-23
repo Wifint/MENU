@@ -130,47 +130,63 @@
             margin-bottom: 2rem;
         }
 
-        .url-grid {
+        .grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
         }
 
-        .url-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
             text-decoration: none;
             color: inherit;
-            transition: var(--transition);
-            border: 1px solid transparent;
+            position: relative;
         }
 
-        .url-card:hover {
-            border-color: var(--primary-color);
-            transform: scale(1.01);
-            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.1);
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.15);
+            border-color: rgba(0, 86, 179, 0.2);
         }
 
-        .url-info h3 {
-            margin: 0;
+        .card-header {
+            height: 140px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
             color: var(--primary-color);
-            font-size: 1.1rem;
         }
 
-        .url-info p {
-            margin: 0.3rem 0 0;
+        .card-desc {
             font-size: 0.9rem;
             color: #666;
-        }
-
-        .url-icon {
-            font-size: 1.5rem;
-            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            flex-grow: 1;
         }
 
         /* --- MOBILE OVERLAY --- */
@@ -360,7 +376,7 @@
             <div id="errorMessage" class="error-message" style="display: none;"></div>
 
             <!-- Dynamic Content Container -->
-            <div id="circularesGrid" class="url-grid"></div>
+            <div id="circularesGrid" class="grid"></div>
 
             <!-- Pagination Controls -->
             <div id="paginationContainer" class="pagination-container" style="display: none;">
@@ -470,12 +486,16 @@
             }
 
             circularesGrid.innerHTML = circulares.map(circular => `
-                <a href="${escapeHtml(circular.url)}" target="_blank" class="url-card">
-                    <div class="url-info">
-                        <h3>${escapeHtml(circular.titulo)}</h3>
-                        <p>${escapeHtml(circular.descripcion || '')}</p>
+                <a href="${escapeHtml(circular.url)}" target="_blank" class="card">
+                    <div class="card-header">
+                        <i class="fas fa-envelope-open-text"></i>
                     </div>
-                    <div class="url-icon">🔗</div>
+                    <div class="card-body">
+                        <h2 class="card-title">${escapeHtml(circular.titulo)}</h2>
+                        <p class="card-desc">
+                            ${escapeHtml(circular.descripcion || '')}
+                        </p>
+                    </div>
                 </a>
             `).join('');
         }
