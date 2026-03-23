@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Manuales" currentPage="manuales">
+  <div slot="header">
+    <div>
+      <h1>TECNET.C.A.</h1>
+      <p>Manuales y Guías</p>
+    </div>
+  </div>
+</Layout>
+
+<div class="container">
+  <h2 class="section-title">Manuales Técnicos</h2>
+
+  <div class="manuales-grid">
+    <a href="/manuales/manualfinal.html" class="manual-card">
+      <div class="manual-icon"><i class="fas fa-book"></i></div>
+      <div class="manual-info">
+        <h3>Manual de Instalación</h3>
+        <p>Guía completa de instalación de equipos y sistemas.</p>
+      </div>
+    </a>
+
+    <a href="/manuales/manual2.html" class="manual-card">
+      <div class="manual-icon"><i class="fas fa-tools"></i></div>
+      <div class="manual-info">
+        <h3>Manual de Mantenimiento</h3>
+        <p>Procedimientos de mantenimiento preventivo y correctivo.</p>
+      </div>
+    </a>
+
+    <a href="/manuales/manual3.html" class="manual-card">
+      <div class="manual-icon"><i class="fas fa-microchip"></i></div>
+      <div class="manual-info">
+        <h3>Manual Técnico</h3>
+        <p>Especificaciones técnicas y configuración avanzada.</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<style>
+  .container {
+    flex: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .section-title {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .manuales-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .manual-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    color: inherit;
+    border-left: 6px solid var(--primary-color);
+    transition: 0.3s;
+  }
+
+  .manual-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .manual-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    width: 60px;
+    text-align: center;
+  }
+
+  .manual-info h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 1.2rem;
+  }
+
+  .manual-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+  }
+</style>

@@ -1,42 +1,22 @@
 {
   "functions": {
-    "api/*.php": {
-      "runtime": "vercel-php@0.7.2",
-      "includeFiles": "database/tecnet.sqlite"
+    "api/index.ts": {
+      "memory": 1024,
+      "maxDuration": 10
     }
   },
+  "includesFiles": [
+    "database/tecnet.sqlite"
+  ],
   "rewrites": [
+    { "source": "/api/:path*", "destination": "/api" }
+  ],
+  "headers": [
     {
-      "source": "/manual",
-      "destination": "/manuales/manualfinal.html"
-    },
-    {
-      "source": "/manualfinal.html",
-      "destination": "/manuales/manualfinal.html"
-    },
-    {
-      "source": "/manual2.html",
-      "destination": "/manuales/manual2.html"
-    },
-    {
-      "source": "/manual3.html",
-      "destination": "/manuales/manual3.html"
-    },
-    {
-      "source": "/listadoprotocolo.html",
-      "destination": "/pages/listadoprotocolo.html"
-    },
-    {
-      "source": "/listadoprotocolos.html",
-      "destination": "/pages/listadoprotocolo.html"
-    },
-    {
-      "source": "/funciones.html",
-      "destination": "/pages/funciones.html"
-    },
-    {
-      "source": "/circulares.html",
-      "destination": "/pages/circulares.html"
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
     }
   ]
 }
