@@ -5,16 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "dev:vercel": "vercel dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^4.0.5",
     "@vercel/node": "^5.6.18",
     "astro": "^4.16.0",
-    "better-sqlite3": "^12.8.0",
     "typescript": "^5.9.3"
   }
 }

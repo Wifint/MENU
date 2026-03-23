@@ -1,36 +1,53 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import Database from 'better-sqlite3';
-
-const db = new Database('./database/tecnet.sqlite');
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 type TableName = 'funciones' | 'protocolos' | 'circulares';
 
-function getDataFromTable(table: TableName, page: number, limit: number) {
-  const offset = (page - 1) * limit;
-
+function getData(table: TableName) {
   try {
-    const countStmt = db.prepare(`SELECT COUNT(*) as total FROM ${table}`);
-    const totalRecords = (countStmt.get() as { total: number }).total;
+    const dataPath = join(process.cwd(), 'data', `${table}.json`);
+    const data = JSON.parse(readFileSync(dataPath, 'utf-8'));
+    return data;
+  } catch (error) {
+    console.error('Error reading data:', error);
+    return [];
+  }
+}
+
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  try {
+    const urlParts = req.url?.split('?') || ['', ''];
+    const pathname = urlParts[0];
+    const pathParts = pathname.split('/').filter(Boolean);
+    const table = pathParts[pathParts.length - 1] as TableName;
+
+    if (!['funciones', 'protocolos', 'circulares'].includes(table)) {
+      res.status(404).json({ success: false, error: 'Endpoint no encontrado' });
+      return;
+    }
+
+    const searchParams = new URL(req.url || '/', 'http://localhost').searchParams;
+    const page = parseInt(searchParams.get('page') || '1');
+    const limit = Math.min(parseInt(searchParams.get('limit') || '10'), 100);
+    const offset = (page - 1) * limit;
+
+    const allData = getData(table);
+    const totalRecords = allData.length;
     const totalPages = Math.ceil(totalRecords / limit);
 
     if (page > totalPages && totalPages > 0) {
-      return { success: false, error: 'Página fuera de rango', status: 400 };
+      res.status(400).json({ success: false, error: 'Página fuera de rango' });
+      return;
     }
 
-    const stmt = db.prepare(`
-      SELECT id, titulo, descripcion, url, fecha_creacion
-      FROM ${table}
-      ORDER BY fecha_creacion DESC
-      LIMIT ? OFFSET ?
-    `);
-
-    const data = stmt.all(limit, offset);
+    const paginatedData = allData.slice(offset, offset + limit);
     const from = totalRecords > 0 ? offset + 1 : 0;
     const to = Math.min(offset + limit, totalRecords);
 
-    return {
+    res.status(200).json({
       success: true,
-      data,
+      data: paginatedData,
       pagination: {
         current_page: page,
         per_page: limit,
@@ -39,28 +56,10 @@ function getDataFromTable(table: TableName, page: number, limit: number) {
         from,
         to
       }
-    };
+    });
 
-  } catch (error) {
-    return { success: false, error: 'Error al obtener los datos', status: 500 };
+  } catch (error: any) {
+    console.error('Error:', error);
+    res.status(500).json({ success: false, error: error.message || 'Error al obtener los datos' });
   }
-}
-
-export default function handler(req: VercelRequest, res: VercelResponse) {
-  const { url } = req;
-  const params = new URL(url || '', `https://${req.headers.host}`);
-  
-  const pathParts = params.pathname.split('/').filter(Boolean);
-  const table = pathParts[pathParts.length - 1] as TableName;
-
-  if (!['funciones', 'protocolos', 'circulares'].includes(table)) {
-    return res.status(404).json({ success: false, error: 'Endpoint no encontrado' });
-  }
-
-  const page = parseInt(params.searchParams.get('page') || '1');
-  const limit = Math.min(parseInt(params.searchParams.get('limit') || '10'), 100);
-
-  const result = getDataFromTable(table, page, limit);
-
-  return res.status(result.status || 200).json(result);
 }

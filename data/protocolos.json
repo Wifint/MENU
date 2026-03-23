@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "titulo": "Protocolo de Instalación",
+    "descripcion": "Pasos para instalación de equipos",
+    "url": "#"
+  },
+  {
+    "id": 2,
+    "titulo": "Protocolo de Mantenimiento",
+    "descripcion": "Procedimientos de mantenimiento preventivo",
+    "url": "#"
+  },
+  {
+    "id": 3,
+    "titulo": "Protocolo de Seguridad",
+    "descripcion": "Normas de seguridad eléctrica",
+    "url": "#"
+  }
+]

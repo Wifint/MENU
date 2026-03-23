@@ -23,10 +23,6 @@ const { title, currentPage = 'inicio' } = Astro.props;
       --text-gray: #a0aec0;
       --bg-color: #f4f7f6;
       --primary-color: #0056b3;
-      --secondary-color: #004494;
-      --card-bg: #ffffff;
-      --text-color: #333;
-      --transition: all 0.3s ease;
     }
 
     * {
@@ -36,7 +32,6 @@ const { title, currentPage = 'inicio' } = Astro.props;
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      display: flex;
       min-height: 100vh;
       background-color: var(--bg-color);
     }
@@ -46,11 +41,9 @@ const { title, currentPage = 'inicio' } = Astro.props;
       background-color: var(--sidebar-bg);
       color: white;
       height: 100vh;
-      position: sticky;
+      position: fixed;
+      left: 0;
       top: 0;
-      transition: all 0.3s ease;
-      flex-shrink: 0;
-      z-index: 1000;
     }
 
     .sidebar-header {
@@ -96,7 +89,8 @@ const { title, currentPage = 'inicio' } = Astro.props;
     }
 
     .main-content {
-      flex-grow: 1;
+      margin-left: 260px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -108,7 +102,6 @@ const { title, currentPage = 'inicio' } = Astro.props;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .top-bar h1 {
@@ -123,6 +116,11 @@ const { title, currentPage = 'inicio' } = Astro.props;
       opacity: 0.9;
     }
 
+    .top-bar .version {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
     .toggle-btn {
       display: none;
       background: transparent;
@@ -130,7 +128,6 @@ const { title, currentPage = 'inicio' } = Astro.props;
       color: white;
       font-size: 1.5rem;
       cursor: pointer;
-      margin-right: 1rem;
     }
 
     .sidebar-overlay {
@@ -148,21 +145,6 @@ const { title, currentPage = 'inicio' } = Astro.props;
       display: block;
     }
 
-    @media (max-width: 768px) {
-      .sidebar {
-        position: fixed;
-        left: -260px;
-      }
-
-      .sidebar.open {
-        left: 0;
-      }
-
-      .toggle-btn {
-        display: block !important;
-      }
-    }
-
     footer {
       text-align: center;
       padding: 2rem;
@@ -170,6 +152,24 @@ const { title, currentPage = 'inicio' } = Astro.props;
       background-color: white;
       border-top: 1px solid #eee;
       margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .toggle-btn {
+        display: block !important;
+      }
     }
   </style>
 </head>
@@ -202,7 +202,7 @@ const { title, currentPage = 'inicio' } = Astro.props;
     <header class="top-bar">
       <button class="toggle-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
       <slot name="header" />
-      <div style="font-size: 0.8rem; opacity: 0.8;">v2.0</div>
+      <div class="version">v1.0</div>
     </header>
 
     <slot />

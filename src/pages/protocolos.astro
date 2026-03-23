@@ -9,24 +9,24 @@ import Layout from '../layouts/Layout.astro';
       <p>Protocolos y Guías Técnicas</p>
     </div>
   </div>
+  
+  <div class="container">
+    <h2 class="section-title">Manuales de Protocolos</h2>
+
+    <div id="loadingSpinner" class="loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i> Cargando protocolos...
+    </div>
+
+    <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+    <div id="protocolosGrid" class="url-grid"></div>
+
+    <div id="paginationContainer" class="pagination-container" style="display: none;">
+      <div id="paginationInfo" class="pagination-info"></div>
+      <div id="paginationButtons" class="pagination-buttons"></div>
+    </div>
+  </div>
 </Layout>
-
-<div class="container">
-  <h2 class="section-title">Manuales de Protocolos</h2>
-
-  <div id="loadingSpinner" class="loading-spinner">
-    <i class="fas fa-spinner fa-spin"></i> Cargando protocolos...
-  </div>
-
-  <div id="errorMessage" class="error-message" style="display: none;"></div>
-
-  <div id="protocolosGrid" class="url-grid"></div>
-
-  <div id="paginationContainer" class="pagination-container" style="display: none;">
-    <div id="paginationInfo" class="pagination-info"></div>
-    <div id="paginationButtons" class="pagination-buttons"></div>
-  </div>
-</div>
 
 <style>
   .container {
@@ -60,7 +60,7 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     text-decoration: none;
     color: inherit;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     border: 1px solid transparent;
   }
 
@@ -115,10 +115,10 @@ import Layout from '../layouts/Layout.astro';
     padding: 0.5rem 1rem;
     border: 1px solid #ddd;
     background: white;
-    color: var(--text-color);
+    color: #333;
     border-radius: 6px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     font-size: 0.9rem;
     font-weight: 500;
   }
